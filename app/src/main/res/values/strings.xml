@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">G12-Seminario-TN</string>
     <string name="Titulo">Recetas Unla</string>
+    <string name="titulo_Lista">Lista de Recetas</string>
 </resources>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-/*
+
 class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
 
     class RecetaViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -37,4 +37,4 @@ class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): Re
         holder.txtIngredientes.text = item.ingredientes
     }
    }
- */
+

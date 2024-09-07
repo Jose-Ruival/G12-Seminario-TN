@@ -24,7 +24,18 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
         }
         rvReceta = findViewById(R.id.rv_recetas)
-        recetaAdapter = recetaAdapter(getRecetas(), this)
+        recetaAdapter = RecetaAdapter(getRecetas(), this)
         rvReceta.adapter = recetaAdapter
     }
+}
+
+private fun getRecetas(): MutableList<Receta> {
+    val recetas: MutableList<Receta> = ArrayList()
+    recetas.add(Receta(1,"Pastafrola","Argentina","Manteca, Huevos, Harina, Azucar, Membrillo"))
+    recetas.add(Receta(2,"Huevo duro", "Gallina", "Huevo"))
+    recetas.add(Receta(3,"Pancho","Constitucion","Salchicha, Pan"))
+    recetas.add(Receta(4,"Arroz con Queso","Belgica","Arroz, Queso, Aceite"))
+    recetas.add(Receta(5,"Pochoclos", "Cine", "Maiz, Azucar, Aceite"))
+    recetas.add(Receta(6,"Omelette", "Francia","Huevo, Queso, Jamon, Manteca"))
+    return recetas
 }

@@ -19,5 +19,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

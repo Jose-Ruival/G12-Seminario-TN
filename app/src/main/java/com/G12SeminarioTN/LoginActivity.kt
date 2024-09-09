@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                    Log.i("TODO","Funcionalidad de recordar usuario y contraseña")
                 }
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, ListadoRecetaActivity::class.java)
                 intent.putExtra("NOMBRE", usuario)
                 startActivity(intent)
                 finish()

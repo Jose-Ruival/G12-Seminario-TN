@@ -3,4 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_botones">#b8c7cc</color>
+    <color name="oscuro">#005954</color>
+    <color name="medio_oscuro">#338b85</color>
+    <color name="medio">#5dc1b9</color>
+    <color name="medio_clarito">#9ce0db</color>
+    <color name="clarito">#dafcfe</color>
+
 </resources>

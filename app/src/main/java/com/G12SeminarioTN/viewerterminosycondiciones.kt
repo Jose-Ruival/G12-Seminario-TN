@@ -1,5 +1,6 @@
 package com.G12SeminarioTN
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -36,6 +37,11 @@ class viewerterminosycondiciones : AppCompatActivity() {
         checkBox.setOnCheckedChangeListener { _, isChecked ->
             // El botón se habilita solo cuando el CheckBox está marcado
             boton_aceptar_tyc.isEnabled = isChecked
+        }
+
+        boton_aceptar_tyc.setOnClickListener(){
+            val intent = Intent(this, ListadoRecetaActivity::class.java)
+            startActivity(intent)
         }
     }
 }

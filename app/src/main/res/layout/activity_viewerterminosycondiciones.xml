@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".viewerterminosycondiciones">
+    tools:context=".viewerterminosycondiciones"
+    android:background="@color/clarito">
 
 
     <!-- Titulo de la pantalla fondo negro y texto blanco -->
@@ -15,7 +16,9 @@
         android:layout_margin="8dp"
         android:gravity="center"
         android:text="Términos y Condiciones"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
 
     <ScrollView
@@ -28,7 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:text="@string/lorem_ipsum"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:textColor="@color/black"/>
     </ScrollView>
 
     <!-- Checcbox para aceptar los terminos -->
@@ -37,7 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text=" Acepto los términos y condiciones "/>
+        android:text=" Acepto los términos y condiciones "
+        android:fontFamily="monospace"/>
 
     <!-- Boton confirmacion de la aceptacion -->
     <Button
@@ -46,7 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Aceptar"
-        android:enabled="false" />
+        android:enabled="false"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
 

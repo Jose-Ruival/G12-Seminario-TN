@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
-        android:layout_weight="0.5"/>
+        android:layout_weight="0.5"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/tv_origen"
@@ -19,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
-        android:layout_weight="0.5"/>
+        android:layout_weight="0.5"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
 
 

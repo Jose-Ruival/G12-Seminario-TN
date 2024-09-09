@@ -6,13 +6,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListadoRecetaActivity">
+    tools:context=".ListadoRecetaActivity"
+    android:background="@color/clarito"
+    >
 
     <TextView
         android:text="@string/titulo_Lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recetas"
@@ -25,13 +29,17 @@
         android:text="Receta completa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/tv_ejemplo"
         android:text="ola"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

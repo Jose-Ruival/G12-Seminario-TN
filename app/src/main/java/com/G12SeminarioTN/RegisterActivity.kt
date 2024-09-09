@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
 
             }else{
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, ListadoRecetaActivity::class.java)
                 startActivity(intent)
             }
         }

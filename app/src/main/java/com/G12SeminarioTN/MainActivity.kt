@@ -1,5 +1,6 @@
 package com.G12SeminarioTN
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -18,16 +19,5 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        saludarUsuario()
-
-
-    }
-
-    private fun saludarUsuario() {
-        var bundle: Bundle? = intent.extras
-        if (bundle != null){
-            val nombreUsuario = bundle?.getString("NOMBRE")
-            Toast.makeText(this, "Bienvenido/a $nombreUsuario", Toast.LENGTH_SHORT).show()
-        }
     }
 }

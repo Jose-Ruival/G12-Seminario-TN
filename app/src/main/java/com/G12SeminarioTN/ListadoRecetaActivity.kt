@@ -2,8 +2,10 @@ package com.G12SeminarioTN
 
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +14,6 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
     lateinit var rvReceta: RecyclerView
     lateinit var recetaAdapter: RecetaAdapter
-    lateinit var tvEjemplo: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,16 +23,12 @@ class ListadoRecetaActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
 
-        tvEjemplo = findViewById(R.id.tv_ejemplo)
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(getRecetas(), this)
         rvReceta.adapter = recetaAdapter
 
-        var ejemplo = getRecetas().get(0)
-        tvEjemplo.setText(ejemplo.toString())
     }
 }
 

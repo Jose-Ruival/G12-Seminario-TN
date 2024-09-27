@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:background="@color/clarito"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INGRESAR USUARIO"
+        android:textSize="27sp"
+        android:fontFamily="monospace"
+        android:layout_marginTop="150dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etUsuario"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="text"
+        android:textSize="27sp"
+        tools:text="Nombre de usuario"
+        android:fontFamily="monospace"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INGRESAR CONTRASEÑA"
+        android:textSize="27sp"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="textPassword"
+        android:textSize="27sp"
+        android:fontFamily="monospace"
+        />
+
+    <CheckBox
+        android:id="@+id/cbRecordarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Recordar usuario"
+        android:textSize="27sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
+            android:background="#678c99"
+            android:text="CREAR\nUSUARIO"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:fontFamily="monospace"
+            />
+
+        <Button
+
+            android:id="@+id/btnIniciarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="0.5"
+            android:background="#678c99"
+            android:text="INICIAR\nSESION"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:fontFamily="monospace"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

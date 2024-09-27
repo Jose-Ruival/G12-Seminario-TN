@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity"
+    android:background="@color/clarito">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="monospace"
+        android:text="INGRESAR EMAIL"
+        android:textSize="27sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etEmailR"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="textEmailAddress"
+        android:textSize="27sp"
+        tools:text="Email"
+        android:fontFamily="monospace"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="INGRESAR USUARIO"
+        android:textSize="27sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etUsuarioR"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="text"
+        android:textSize="27sp"
+        tools:text="Nombre de usuario"
+        android:fontFamily="monospace"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INGRESAR CONTRASEÑA"
+        android:textSize="27sp"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/etPasswordR"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:inputType="textPassword"
+        android:textSize="27sp"
+        android:fontFamily="monospace"
+        />
+
+
+
+        <Button
+            android:id="@+id/btnRegistrarR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="5dp"
+            android:background="#678c99"
+            android:text="CREAR\nUSUARIO"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:fontFamily="monospace"
+            />
+
+
+
+</LinearLayout>

@@ -25,21 +25,5 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_receta"/>
 
-    <TextView
-        android:text="Receta completa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/tv_ejemplo"
-        android:text="ola"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"/>
 
 </LinearLayout>

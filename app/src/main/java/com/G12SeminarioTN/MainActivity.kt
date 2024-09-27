@@ -19,7 +19,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val intent = Intent(this, LoginActivity::class.java)
+        saludarUsuario()
+
+        val intent = Intent(this, ListadoRecetaActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun saludarUsuario() {
+        val bundle: Bundle? = intent.extras
+        if (bundle!=null){
+            val nombreUsuario=bundle?.getString(resources.getString(R.string.nombre_usuario))
+            Toast.makeText(this, "Bienvenido/a $nombreUsuario", Toast.LENGTH_SHORT).show()
+        }
     }
 }

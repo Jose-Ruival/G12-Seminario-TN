@@ -36,6 +36,16 @@ class LoginActivity : AppCompatActivity() {
         btnRegistrarse = findViewById(R.id.btnRegistrar)
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
 
+        var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+        var usuarioGuardado = preferencias.getString(resources.getString(R.string.nombre_usuario), "")
+        var passwordGuardado = preferencias.getString(resources.getString(R.string.password_usuario), "")
+
+        if(usuarioGuardado!="" && passwordGuardado!= ""){
+            if (usuarioGuardado != null) {
+                startMainActivity(usuarioGuardado)
+            }
+        }
+
 
         btnRegistrarse.setOnClickListener {
 
@@ -46,23 +56,28 @@ class LoginActivity : AppCompatActivity() {
         btnIniciarSesion.setOnClickListener {
 
             var usuario =  etUsuario.text.toString()
-
-            if (usuario.isEmpty() || etPassword.text.toString().isEmpty()){
+            var pass = etPassword.text.toString()
+            if (usuario.isEmpty() || pass.isEmpty()){
                 var mensaje= "Completar Datos"
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
 
             }else{
                 if (cbRecordarusuario.isChecked) {
-                   Log.i("TODO","Funcionalidad de recordar usuario y contraseña")
+                    var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+                    preferencias.edit().putString(resources.getString(R.string.nombre_usuario), usuario).apply()
+                    preferencias.edit().putString(resources.getString(R.string.password_usuario), usuario).apply()
                 }
-
-                val intent = Intent(this, ListadoRecetaActivity::class.java)
-                intent.putExtra("NOMBRE", usuario)
-                startActivity(intent)
-                finish()
+                startMainActivity(usuario)
             }
 
         }
 
+    }
+
+    private fun startMainActivity(usuario: String) {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(resources.getString(R.string.nombre_usuario), usuario)
+        startActivity(intent)
+        finish()
     }
 }

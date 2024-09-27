@@ -78,17 +78,26 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, mensaje2, Toast.LENGTH_SHORT).show()
                 }else{
 
-                    val passwordCorrecta = usuarioDao.getUsuarioPassword(pass)
+
+                    if (usuarioExiste.contraseña != pass.toString()) {
+
+                        var mensaje3 = "Contraseña incorrecta"
+                        Toast.makeText(this, mensaje3, Toast.LENGTH_SHORT).show()
+                    }else{
+
+                        if (cbRecordarusuario.isChecked) {
+                            var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+                            preferencias.edit().putString(resources.getString(R.string.nombre_usuario), usuario).apply()
+                            preferencias.edit().putString(resources.getString(R.string.password_usuario), usuario).apply()
+                        }
+                        startMainActivity(usuario)
+
+                    }
 
 
                 }
 
-                if (cbRecordarusuario.isChecked) {
-                    var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
-                    preferencias.edit().putString(resources.getString(R.string.nombre_usuario), usuario).apply()
-                    preferencias.edit().putString(resources.getString(R.string.password_usuario), usuario).apply()
-                }
-                startMainActivity(usuario)
+
             }
 
         }

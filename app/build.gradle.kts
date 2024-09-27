@@ -34,6 +34,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
 }
 
 dependencies {
@@ -50,4 +52,5 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

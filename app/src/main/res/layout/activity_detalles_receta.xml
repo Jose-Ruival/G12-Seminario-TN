@@ -9,6 +9,10 @@
     android:orientation="vertical"
     android:background="@color/clarito">
 
+    <include android:id="@+id/toolbar"
+        layout="@layout/primary_layout"
+
+        />
     <TextView
         android:id="@+id/tv_nombre_detalle"
         android:layout_width="match_parent"

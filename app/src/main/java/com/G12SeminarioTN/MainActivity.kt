@@ -44,7 +44,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.btnIniciarSesion)
+        if (item.itemId == R.id.btnIniciarSesion){
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 

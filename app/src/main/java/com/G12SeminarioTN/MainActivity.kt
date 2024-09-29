@@ -39,28 +39,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-        replaceFragment(Inicio())
-
-
-
-
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.Inicio -> replaceFragment(Inicio())
-                R.id.Buscar-> replaceFragment(Buscar())
-                R.id.Añadir-> replaceFragment(Anadir())
-                R.id.Perfil -> replaceFragment(Perfil())
-
-
-                else -> {}
-            }
-            true
-        }
-
-
-
-
         saludarUsuario()
 
 

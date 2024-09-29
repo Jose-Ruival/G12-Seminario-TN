@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.widget.`Toolbar$InspectionCompanion`
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var cbRecordarusuario: CheckBox
     lateinit var btnRegistrarse: Button
     lateinit var btnIniciarSesion: Button
+    lateinit var Toolbar : Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,9 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(Toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
         etUsuario = findViewById(R.id.etUsuario)
         etPassword = findViewById(R.id.etPassword)
         cbRecordarusuario = findViewById(R.id.cbRecordarUsuario)

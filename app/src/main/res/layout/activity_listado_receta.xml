@@ -9,6 +9,10 @@
     tools:context=".ListadoRecetaActivity"
     android:background="@color/clarito"
     >
+    <include android:id="@+id/toolbar"
+        layout="@layout/primary_layout"
+
+        />
 
     <TextView
         android:text="@string/titulo_Lista"

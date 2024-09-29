@@ -5,6 +5,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,6 +15,8 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
     lateinit var rvReceta: RecyclerView
     lateinit var recetaAdapter: RecetaAdapter
+    lateinit var toolbar: Toolbar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +27,15 @@ class ListadoRecetaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(getRecetas(), this)
         rvReceta.adapter = recetaAdapter
-
     }
 }
+
 
 private fun getRecetas(): MutableList<Receta> {
     val recetas: MutableList<Receta> = ArrayList()

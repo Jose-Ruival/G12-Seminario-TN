@@ -8,6 +8,10 @@
     tools:context=".viewerterminosycondiciones"
     android:background="@color/clarito">
 
+    <include android:id="@+id/toolbar"
+        layout="@layout/primary_layout"
+
+        />
 
     <!-- Titulo de la pantalla fondo negro y texto blanco -->
     <TextView

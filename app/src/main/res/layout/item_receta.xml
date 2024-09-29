@@ -17,17 +17,19 @@
             android:id="@+id/tv_nombre"
             android:layout_width="320sp"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.2"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/tv_origen"
             android:layout_width="320sp"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.8"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 

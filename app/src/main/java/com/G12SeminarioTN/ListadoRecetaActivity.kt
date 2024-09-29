@@ -48,9 +48,14 @@ class ListadoRecetaActivity : AppCompatActivity() {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
+        if (item.itemId == R.id.btnListado){
+            val intent = Intent(this,ListadoRecetaActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 }
+
 
 
 private fun getRecetas(): MutableList<Receta> {

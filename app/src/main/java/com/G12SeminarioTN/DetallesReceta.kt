@@ -53,6 +53,10 @@ class DetallesReceta : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.btnListado){
+            val intent = Intent(this,ListadoRecetaActivity::class.java)
+            startActivity(intent)
+        }
         if (item.itemId == R.id.btnIniciarSesion){
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)

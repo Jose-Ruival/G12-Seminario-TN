@@ -18,7 +18,8 @@
         android:text="Términos y Condiciones"
         android:textSize="20sp"
         android:fontFamily="monospace"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:background="@color/medio"/>
 
 
     <ScrollView
@@ -43,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text=" Acepto los términos y condiciones "
-        android:fontFamily="monospace"/>
+        android:fontFamily="monospace"
+        android:background="@color/medio_clarito"/>
 
     <!-- Boton confirmacion de la aceptacion -->
     <Button
@@ -54,7 +56,8 @@
         android:text="Aceptar"
         android:enabled="false"
         android:fontFamily="monospace"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:background="@color/medio_oscuro"/>
 
 </LinearLayout>
 

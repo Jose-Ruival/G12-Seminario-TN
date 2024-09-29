@@ -16,7 +16,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:fontFamily="monospace"
-        android:textColor="@color/black"/>
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:background="@color/medio"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recetas"

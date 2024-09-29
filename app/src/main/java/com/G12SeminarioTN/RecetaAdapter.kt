@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -19,7 +21,6 @@ class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): Re
         init {
             txtNombre = view.findViewById(R.id.tv_nombre)
             txtOrigen = view.findViewById(R.id.tv_origen)
-
         }
     }
 
@@ -34,6 +35,10 @@ class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): Re
         val item = recetas.get(position)
         holder.txtNombre.text = item.nombre
         holder.txtOrigen.text = item.origen
+
+        holder.itemView.setOnClickListener{
+            Toast.makeText(context, "Ingredientes: " + item.ingredientes, Toast.LENGTH_SHORT).show()
+        }
 
     }
    }

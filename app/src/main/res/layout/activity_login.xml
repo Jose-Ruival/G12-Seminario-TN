@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,101 +7,108 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:background="@color/clarito"
-    >
+    android:background="@color/medio_clarito">
 
-    <include android:id="@+id/toolbar"
-        layout="@layout/primary_layout"
-        />
+    <!-- Imagen del logo en la parte superior -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/name"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INGRESAR USUARIO"
-        android:textSize="26sp"
-        android:fontFamily="monospace"
-        android:layout_marginTop="150dp"
-        android:textStyle="bold"
-        android:background="@color/medio_clarito"/>
 
+    <!-- Campo de texto para el usuario con ícono de usuario -->
     <EditText
         android:id="@+id/etUsuario"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="text"
-        android:textSize="26sp"
-        tools:text="Nombre de usuario"
-        android:fontFamily="monospace"/>
+        android:textSize="25sp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:drawablePadding="10dp"
+        android:hint="Ingresar usuario"
+        android:textStyle="bold"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INGRESAR CONTRASEÑA"
-        android:textSize="26sp"
-        android:fontFamily="monospace"
-        android:textStyle="bold"
-        android:background="@color/medio_clarito"/>
 
+    <!-- Campo de texto para la contraseña con ícono de llave -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="textPassword"
-        android:textSize="26sp"
-        android:fontFamily="monospace"
-        />
+        android:textSize="25sp"
+        android:fontFamily="sans-serif"
+        android:hint="Ingresar contraseña"
+        android:drawableStart="@drawable/baseline_key_24"
+        android:drawablePadding="10dp"
+        android:textStyle="bold"/>
 
+    <!-- Checkbox para recordar usuario -->
     <CheckBox
         android:id="@+id/cbRecordarUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="monospace"
+        android:fontFamily="sans-serif"
         android:text="Recordar usuario"
-        android:textSize="23sp" />
+        android:textSize="22sp"
+        android:layout_marginTop="30dp"/>
 
+    <!-- Contenedor de botones -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="70dp">
 
+        <!-- Botón de CREAR USUARIO -->
         <Button
             android:id="@+id/btnRegistrar"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="9dp"
             android:layout_weight="0.5"
-            android:background="@color/medio_oscuro"
-            android:text="CREAR\nUSUARIO"
-            android:textSize="20sp"
-            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="15dp"
             android:paddingTop="10dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:fontFamily="monospace"
-            />
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text="Crear usuario"
+            android:textColor="@color/medio_clarito"
+            android:textSize="15sp"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:drawablePadding="10dp" />
 
+        <!-- Botón de INICIAR SESIÓN -->
         <Button
-
             android:id="@+id/btnIniciarSesion"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="13dp"
             android:layout_weight="0.5"
-            android:background="@color/medio_oscuro"
-            android:text="INICIAR\nSESION"
-            android:textSize="20sp"
-            android:paddingBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:drawableStart="@drawable/baseline_login_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif"
+            android:paddingLeft="15dp"
             android:paddingTop="10dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:fontFamily="monospace"
-            />
+            android:paddingRight="10dp"
+            android:paddingBottom="15dp"
+            android:text="Iniciar sesion"
+            android:textColor="@color/medio_clarito"
+            android:textSize="15sp" />
 
     </LinearLayout>
-
-
 </LinearLayout>
+
+
+

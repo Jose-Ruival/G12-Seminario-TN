@@ -9,7 +9,9 @@
     tools:context=".LoginActivity"
     android:background="@color/medio_clarito">
 
-    <include android:id="@+id/toolbar"
+    <!-- Corregir la etiqueta 'include' -->
+    <include
+        android:id="@+id/toolbar"
         layout="@layout/primary_layout" />
 
     <!-- Imagen del logo en la parte superior -->
@@ -21,7 +23,6 @@
         android:contentDescription="@string/name"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp" />
-
 
     <!-- Campo de texto para el usuario con ícono de usuario -->
     <EditText
@@ -36,7 +37,6 @@
         android:drawablePadding="10dp"
         android:hint="Ingresar usuario"
         android:textStyle="bold"/>
-
 
     <!-- Campo de texto para la contraseña con ícono de llave -->
     <EditText
@@ -60,7 +60,7 @@
         android:fontFamily="sans-serif"
         android:text="Recordar usuario"
         android:textSize="22sp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp" />
 
     <!-- Contenedor de botones -->
     <LinearLayout
@@ -106,12 +106,10 @@
             android:paddingTop="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="15dp"
-            android:text="Iniciar sesion"
+            android:text="Iniciar sesión"
             android:textColor="@color/medio_clarito"
             android:textSize="15sp" />
 
     </LinearLayout>
 </LinearLayout>
-
-
 

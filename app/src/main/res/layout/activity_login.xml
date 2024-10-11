@@ -9,6 +9,9 @@
     tools:context=".LoginActivity"
     android:background="@color/medio_clarito">
 
+    <include android:id="@+id/toolbar"
+        layout="@layout/primary_layout" />
+
     <!-- Imagen del logo en la parte superior -->
     <ImageView
         android:id="@+id/logo"

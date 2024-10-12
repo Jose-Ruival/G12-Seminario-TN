@@ -8,24 +8,37 @@
     tools:context=".viewerterminosycondiciones"
     android:background="@color/clarito">
 
-    <include android:id="@+id/toolbar"
-        layout="@layout/primary_layout"
-
-        />
-
-    <!-- Titulo de la pantalla fondo negro y texto blanco -->
-    <TextView
+    <!-- Toolbar con imagen de términos y condiciones -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:text="Términos y Condiciones"
-        android:textSize="20sp"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"
-        android:background="@color/medio"/>
+        android:background="@color/medio"
+        android:src="@drawable/acuerdo"
+        android:elevation="4dp">
 
+        <!-- Imagen representativa para Términos y Condiciones -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_description_24"
+            android:contentDescription="Icono Términos y Condiciones"
+            android:layout_gravity="start"
+            android:padding="10dp" />
 
+        <!-- Título de la Toolbar -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Términos y Condiciones"
+            android:textSize="20sp"
+            android:fontFamily="monospace"
+            android:textColor="@color/black"
+            android:layout_gravity="center" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- ScrollView para términos -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,7 +54,7 @@
             android:textColor="@color/black"/>
     </ScrollView>
 
-    <!-- Checcbox para aceptar los terminos -->
+    <!-- Checkbox para aceptar los términos -->
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
@@ -49,9 +62,11 @@
         android:layout_margin="8dp"
         android:text=" Acepto los términos y condiciones "
         android:fontFamily="monospace"
+        android:textColor="@color/black"
+        android:drawablePadding="10dp"
         android:background="@color/medio_clarito"/>
 
-    <!-- Boton confirmacion de la aceptacion -->
+    <!-- Botón de confirmación -->
     <Button
         android:id="@+id/boton_aceptar_tyc"
         android:layout_width="match_parent"
@@ -61,7 +76,9 @@
         android:enabled="false"
         android:fontFamily="monospace"
         android:textColor="@color/black"
-        android:background="@color/medio_oscuro"/>
-
+        android:background="@color/medio_oscuro"
+        android:drawableStart="@drawable/baseline_check_circle_24"
+        android:drawablePadding="10dp"/>
 </LinearLayout>
+
 

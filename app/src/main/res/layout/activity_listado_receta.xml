@@ -31,5 +31,4 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_receta"/>
 
-
 </LinearLayout>

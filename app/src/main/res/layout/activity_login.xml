@@ -9,10 +9,10 @@
     tools:context=".LoginActivity"
     android:background="@color/medio_clarito">
 
-    <!-- Corregir la etiqueta 'include' -->
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/primary_layout" />
+    <include android:id="@+id/toolbar"
+        layout="@layout/primary_layout"
+
+        />
 
     <!-- Imagen del logo en la parte superior -->
     <ImageView

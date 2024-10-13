@@ -17,6 +17,12 @@
 
             />
 
+        <item
+            android:id="@+id/btnDescargar"
+            android:title="Descargar"
+            android:icon="@drawable/baseline_download_24"
+        app:showAsAction="ifRoom"/> <!-- Esto asegura que el ítem aparezca en la barra de acciones si hay espacio -->
+
 
 
 </menu>

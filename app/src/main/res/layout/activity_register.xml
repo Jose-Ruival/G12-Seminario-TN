@@ -10,6 +10,7 @@
     android:background="@color/clarito"
     android:padding="20dp">
 
+
     <!-- Logo de la aplicación -->
     <ImageView
         android:id="@+id/logo"

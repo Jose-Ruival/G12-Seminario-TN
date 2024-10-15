@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        toolbar = findViewById(R.id.toolbar)
+       toolbar= findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = resources.getString(R.string.name2)
 
@@ -39,24 +39,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.btnIniciarSesion) {
-            val intent = Intent(this, LoginActivity::class.java)
+        if (item.itemId == R.id.btnIniciarSesion){
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
 
 
+
     private fun saludarUsuario() {
-        val nombreUsuario = intent.getStringExtra("usuario")
-        if (nombreUsuario != null) {
+        val bundle: Bundle? = intent.extras
+        if (bundle!=null){
+            val nombreUsuario=bundle?.getString(resources.getString(R.string.nombre_usuario))
             Toast.makeText(this, "Bienvenido/a $nombreUsuario", Toast.LENGTH_SHORT).show()
         }
     }
-
 }
+

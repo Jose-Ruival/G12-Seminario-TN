@@ -14,8 +14,10 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.appcompat.widget.`Toolbar$InspectionCompanion`
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var cbRecordarUsuario: CheckBox
     lateinit var btnRegistrarse: Button
     lateinit var btnIniciarSesion: Button
+    lateinit var toolbar: Toolbar
 
     private val CHANNEL_ID = "canal_recordar_usuario"
     private val NOTIFICATION_ID = 1
@@ -35,11 +38,17 @@ class LoginActivity : AppCompatActivity() {
         // Crear canal de notificación
         crearCanalDeNotificacion()
 
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
+
         etUsuario = findViewById(R.id.etUsuario)
         etPassword = findViewById(R.id.etPassword)
         cbRecordarUsuario = findViewById(R.id.cbRecordarUsuario)
         btnRegistrarse = findViewById(R.id.btnRegistrar)
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
+
+
 
         // Almacenar credenciales si el checkbox está marcado
         cbRecordarUsuario.setOnCheckedChangeListener { _, isChecked ->

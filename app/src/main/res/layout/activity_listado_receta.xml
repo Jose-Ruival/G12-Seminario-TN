@@ -8,11 +8,12 @@
     android:layout_height="match_parent"
     tools:context=".ListadoRecetaActivity"
     android:background="@color/clarito"
-    >
-    <include android:id="@+id/toolbar"
-        layout="@layout/primary_layout"
+    android:fitsSystemWindows="true"> <!-- Agregado aquí -->
 
-        />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/primary_layout" />
+
 
 
     <TextView
@@ -23,13 +24,13 @@
         android:fontFamily="monospace"
         android:textSize="26sp"
         android:textColor="@color/black"
-        android:background="@color/medio"/>
+        android:background="@color/medio" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recetas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_receta"/>
-
+        tools:listitem="@layout/item_receta" />
 </LinearLayout>

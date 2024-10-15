@@ -1,5 +1,6 @@
 package com.G12SeminarioTN
 
+
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,32 +15,51 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.appcompat.widget.`Toolbar$InspectionCompanion`
+
 
 class LoginActivity : AppCompatActivity() {
+
 
     lateinit var etUsuario: EditText
     lateinit var etPassword: EditText
     lateinit var cbRecordarUsuario: CheckBox
     lateinit var btnRegistrarse: Button
     lateinit var btnIniciarSesion: Button
+    lateinit var toolbar: Toolbar
+
 
     private val CHANNEL_ID = "canal_recordar_usuario"
     private val NOTIFICATION_ID = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         // Crear canal de notificación
         crearCanalDeNotificacion()
+
+
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
+
 
         etUsuario = findViewById(R.id.etUsuario)
         etPassword = findViewById(R.id.etPassword)
         cbRecordarUsuario = findViewById(R.id.cbRecordarUsuario)
         btnRegistrarse = findViewById(R.id.btnRegistrar)
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
+
+
+
+
+
 
         // Almacenar credenciales si el checkbox está marcado
         cbRecordarUsuario.setOnCheckedChangeListener { _, isChecked ->
@@ -48,10 +68,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
         // Lógica para el botón de iniciar sesión
         btnIniciarSesion.setOnClickListener {
             var usuario = etUsuario.text.toString()
             var pass = etPassword.text.toString()
+
 
             if (usuario.isEmpty() || pass.isEmpty()) {
                 val mensaje = "Completar Datos"
@@ -60,7 +82,9 @@ class LoginActivity : AppCompatActivity() {
                 val db = UsuarioDatabase.getDatabase(this)
                 val usuarioDao = db.usuarioDao()
 
+
                 val usuarioExiste = usuarioDao.getUsuarioNombre(usuario)
+
 
                 if (usuarioExiste == null) {
                     val mensaje2 = "El Usuario no Existe"
@@ -81,12 +105,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
         // Configuración de botón para registrarse
         btnRegistrarse.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
+
 
     // Crear el canal de notificaciones
     private fun crearCanalDeNotificacion() {
@@ -98,19 +124,24 @@ class LoginActivity : AppCompatActivity() {
                 description = descripcion
             }
 
+
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(canal)
         }
     }
 
+
     @SuppressLint("MissingPermission")
     private fun mostrarNotificacion(titulo: String, contenido: String) {
+
 
         val intentMainActivity = Intent(this, MainActivity::class.java)
         val pendingIntentMainActivity: PendingIntent = PendingIntent.getActivity(this, 0, intentMainActivity, PendingIntent.FLAG_IMMUTABLE)
 
+
         val imagenGrande = BitmapFactory.decodeResource(resources, R.drawable.logo)
+
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.logo)
@@ -121,10 +152,12 @@ class LoginActivity : AppCompatActivity() {
             .addAction(R.drawable.baseline_check_24, "Aceptar", pendingIntentMainActivity)
             .setAutoCancel(true)
 
+
         with(NotificationManagerCompat.from(this)) {
             notify(NOTIFICATION_ID, builder.build())
         }
     }
+
 
     // Navegar a la pantalla principal
     private fun iniciarMainActivity(usuario: String) {
@@ -134,7 +167,9 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
+
 }
+
 
 
 

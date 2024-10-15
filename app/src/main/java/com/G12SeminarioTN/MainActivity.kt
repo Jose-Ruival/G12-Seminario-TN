@@ -52,13 +52,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun saludarUsuario() {
-        val bundle: Bundle? = intent.extras
-        if (bundle!=null){
-            val nombreUsuario=bundle?.getString(resources.getString(R.string.nombre_usuario))
+        val nombreUsuario = intent.getStringExtra("usuario")
+        if (nombreUsuario != null) {
             Toast.makeText(this, "Bienvenido/a $nombreUsuario", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }
+
 

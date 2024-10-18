@@ -1,7 +1,4 @@
-package com.G12SeminarioTN
-
-import com.G12SeminarioTN.API.Ingrediente
-import com.G12SeminarioTN.API.NutrienteInfo
+package com.G12SeminarioTN.API
 
 data class Receta(
     val uri: String,                         // Identificador de ontología

@@ -1,6 +1,6 @@
 package com.G12SeminarioTN.API
 
-class Food (
+class Comida (
     val uri: String,
     val label: String
 )

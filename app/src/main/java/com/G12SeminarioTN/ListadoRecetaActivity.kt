@@ -35,6 +35,8 @@ class ListadoRecetaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_listado_receta)
 
 
+
+
         // Configuración de la interfaz
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -42,6 +44,7 @@ class ListadoRecetaActivity : AppCompatActivity() {
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(getRecetas(), this)
         rvReceta.adapter = recetaAdapter
+
     }
 
 

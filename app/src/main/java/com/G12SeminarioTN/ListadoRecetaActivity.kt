@@ -65,7 +65,7 @@ class ListadoRecetaActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.title = resources.getString(R.string.name2)
         rvReceta = findViewById(R.id.rv_recetas)
-        recetaAdapter = RecetaAdapter(recetas, this)
+        recetaAdapter = RecetaAdapter(, this)
         rvReceta.adapter = recetaAdapter
 
     }

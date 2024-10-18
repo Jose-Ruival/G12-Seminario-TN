@@ -16,6 +16,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.G12SeminarioTN.API.EdamamResponse
+import com.G12SeminarioTN.API.RetroFitClient
+
 
 
 class ListadoRecetaActivity : AppCompatActivity() {
@@ -33,6 +36,20 @@ class ListadoRecetaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_listado_receta)
+        val appId = "tu_app_id"
+        val appKey = "tu_app_key"
+
+        val apiService = ApiClient.apiService
+        val call = apiService.searchRecipes("pollo", appId, appKey)
+
+        call.enqueue(object : Callback<EdamamResponse> {
+            override fun onResponse(call: Call<EdamamResponse>, response: Response<EdamamResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val recetas = response.body()!!.hits.map { it.recipe }
+                    recetas.forEach { receta ->
+                        Log.d("Receta", receta.label)
+                    }
+                }
 
 
 

@@ -1,10 +1,13 @@
 package com.G12SeminarioTN
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
 
-    class RecetaViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class RecetaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         lateinit var txtNombre: TextView
         lateinit var txtOrigen: TextView
@@ -36,10 +39,13 @@ class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): Re
         holder.txtNombre.text = item.nombre
         holder.txtOrigen.text = item.origen
 
-        holder.itemView.setOnClickListener{
-            Toast.makeText(context, "Ingredientes: " + item.ingredientes, Toast.LENGTH_SHORT).show()
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetallesReceta::class.java)
+            intent.putExtra("nombre", item.nombre)
+            intent.putExtra("origen", item.origen)
+            intent.putExtra("ingredientes", item.ingredientes)
+            context.startActivity(intent)
         }
-
     }
-   }
+}
 

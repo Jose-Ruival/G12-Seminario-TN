@@ -1,8 +1,5 @@
 package com.G12SeminarioTN
 
-
-
-
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle

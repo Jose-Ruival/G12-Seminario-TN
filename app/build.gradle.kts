@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kotlin{
+        jvmToolchain(8)
+    }
     kapt {
         useBuildCache = false
         correctErrorTypes = true

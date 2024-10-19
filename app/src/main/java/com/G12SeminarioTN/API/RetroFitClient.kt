@@ -20,6 +20,5 @@ object RetroFitClient {
         .addConverterFactory(MoshiConverterFactory.create(moshi)) // Usar Moshi como convertidor
         .build()
 
-    // Crear el servicio API
     val apiService: PostEndpoints = retrofit.create(PostEndpoints::class.java)
 }

@@ -6,16 +6,16 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PostEndpoints {
-
+    /*
     @GET("/posts")
     fun getPosts() : Call<List<Post>>
 
     @GET("/posts/{app_id}")
     fun getPost(@Path("app_id") app_id: String) : Call<Post>
-
-    @GET("search")
+    */
+    @GET("/search")
     fun searchRecipes(
-        @Query("q") query: String?,
+        @Query("q") query: String,
         @Query("app_id") appId: String,
         @Query("app_key") appKey: String,
         @Query("from") from: Int? = 0,

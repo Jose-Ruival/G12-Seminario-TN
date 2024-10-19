@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.EdamamResponse
 import com.G12SeminarioTN.API.RetroFitClient
@@ -32,28 +33,30 @@ class ListadoRecetaActivity : AppCompatActivity() {
     private var descargaCompletada = false
     private var isDownloading = false // Estado de descarga
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_listado_receta)
-        val appId = "tu_app_id"
-        val appKey = "tu_app_key"
+        val appId = "e8c97bc9"
+        val appKey = "0933cae228048250ec7991c28a0e9ae0"
 
         val apiService = RetroFitClient.apiService
         val call = apiService.searchRecipes("pollo", appId, appKey)
 
+        rvReceta = findViewById(R.id.rv_recetas)
+        recetaAdapter = RecetaAdapter(emptyList(), this@ListadoRecetaActivity)
+        rvReceta.adapter = recetaAdapter
+
         call.enqueue(object : Callback<EdamamResponse> {
             override fun onResponse(call: Call<EdamamResponse>, response: Response<EdamamResponse>) {
+
                 if (response.isSuccessful && response.body() != null) {
                     val recetas = response.body()!!.hits.map { it.recipe }
-                    rvReceta = findViewById(R.id.rv_recetas)
-                    recetaAdapter = RecetaAdapter(recetas, applicationContext)
+                    recetaAdapter = RecetaAdapter(recetas, this@ListadoRecetaActivity )
                     rvReceta.adapter = recetaAdapter
                 }
 
             }
-
             override fun onFailure(call: Call<EdamamResponse>, t: Throwable) {
                 Log.e("Error", t.message ?: "Error desconocido")
             }

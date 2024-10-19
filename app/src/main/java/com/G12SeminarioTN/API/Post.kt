@@ -1,5 +1,5 @@
 package com.G12SeminarioTN.API
-
+/*
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -9,4 +9,4 @@ data class Post(
     var q: String,
 )
 
-
+*/

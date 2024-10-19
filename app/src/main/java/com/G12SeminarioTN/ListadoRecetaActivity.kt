@@ -47,6 +47,9 @@ class ListadoRecetaActivity : AppCompatActivity() {
             override fun onResponse(call: Call<EdamamResponse>, response: Response<EdamamResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val recetas = response.body()!!.hits.map { it.recipe }
+                    rvReceta = findViewById(R.id.rv_recetas)
+                    recetaAdapter = RecetaAdapter(recetas, applicationContext)
+                    rvReceta.adapter = recetaAdapter
                 }
 
             }
@@ -63,9 +66,7 @@ class ListadoRecetaActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = resources.getString(R.string.name2)
-        rvReceta = findViewById(R.id.rv_recetas)
-        recetaAdapter = RecetaAdapter(, this)
-        rvReceta.adapter = recetaAdapter
+
 
     }
 

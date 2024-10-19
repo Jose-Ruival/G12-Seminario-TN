@@ -1,4 +1,4 @@
-package com.G12SeminarioTN
+package com.G12SeminarioTN.Usuario
 
 import androidx.room.Dao
 import androidx.room.Insert

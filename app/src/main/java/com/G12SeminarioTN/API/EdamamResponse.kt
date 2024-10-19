@@ -1,5 +1,7 @@
 package com.G12SeminarioTN.API
 
+import com.G12SeminarioTN.RecetaConAtributos.Receta
+
 data class EdamamResponse(
     val q: String?,
     val from: Int,

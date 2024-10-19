@@ -1,4 +1,4 @@
-package com.G12SeminarioTN.API
+package com.G12SeminarioTN.RecetaConAtributos
 
 data class Receta(
     val uri: String,                         // Identificador de ontología

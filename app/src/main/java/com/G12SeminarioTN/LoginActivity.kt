@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.appcompat.widget.`Toolbar$InspectionCompanion`
+import com.G12SeminarioTN.Usuario.UsuarioDatabase
 
 
 class LoginActivity : AppCompatActivity() {

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.G12SeminarioTN.API.Receta
+import com.G12SeminarioTN.RecetaConAtributos.Receta
 
 
 class RecetaAdapter (var recetas: MutableList<Receta>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {

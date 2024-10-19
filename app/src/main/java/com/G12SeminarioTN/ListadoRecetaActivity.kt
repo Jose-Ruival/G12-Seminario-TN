@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.EdamamResponse
-import com.G12SeminarioTN.API.Receta
 import com.G12SeminarioTN.API.RetroFitClient
 import retrofit2.Call
 import retrofit2.Callback

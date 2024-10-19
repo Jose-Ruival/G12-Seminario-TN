@@ -1,4 +1,4 @@
-package com.G12SeminarioTN
+package com.G12SeminarioTN.Usuario
 
 import android.content.Context
 import androidx.room.Database

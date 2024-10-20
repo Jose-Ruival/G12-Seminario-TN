@@ -37,7 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     kotlin{
-        jvmToolchain(8)
+        jvmToolchain(17)
     }
     kapt {
         useBuildCache = false
@@ -52,8 +52,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation("com.squareup:kotlinpoet:1.14.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
 

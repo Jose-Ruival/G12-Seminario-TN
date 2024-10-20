@@ -14,10 +14,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.G12SeminarioTN.API.EdamamResponse
+import com.G12SeminarioTN.API.Receta
+import com.G12SeminarioTN.API.Recetas
 import com.G12SeminarioTN.API.RetroFitClient
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,23 +42,23 @@ class ListadoRecetaActivity : AppCompatActivity() {
         val appKey = "0933cae228048250ec7991c28a0e9ae0"
 
         val apiService = RetroFitClient.apiService
-        val call = apiService.searchRecipes("pollo", appId, appKey)
+        val call = apiService.searchRecipes()
 
         rvReceta = findViewById(R.id.rv_recetas)
-        recetaAdapter = RecetaAdapter(emptyList(), this@ListadoRecetaActivity)
+        recetaAdapter = RecetaAdapter(emptyArray(), this@ListadoRecetaActivity)
         rvReceta.adapter = recetaAdapter
 
-        call.enqueue(object : Callback<EdamamResponse> {
-            override fun onResponse(call: Call<EdamamResponse>, response: Response<EdamamResponse>) {
-
+        call.enqueue(object : Callback<Recetas> {
+            override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
                 if (response.isSuccessful && response.body() != null) {
-                    val recetas = response.body()!!.hits.map { it.recipe }
-                    recetaAdapter = RecetaAdapter(recetas, this@ListadoRecetaActivity )
+                    val recetas = response.body()
+                    if (recetas != null) {
+                        recetaAdapter = RecetaAdapter(recetas.recipes, this@ListadoRecetaActivity)
+                    }
                     rvReceta.adapter = recetaAdapter
-                }
-
+                } else  Log.e("NO FUNCIONA", "ASDASDASDAS")
             }
-            override fun onFailure(call: Call<EdamamResponse>, t: Throwable) {
+            override fun onFailure(call: Call<Recetas>, t: Throwable) {
                 Log.e("Error", t.message ?: "Error desconocido")
             }
         })

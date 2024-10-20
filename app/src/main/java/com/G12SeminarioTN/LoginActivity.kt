@@ -56,9 +56,6 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-
-
-
         // Almacenar credenciales si el checkbox está marcado
         cbRecordarUsuario.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

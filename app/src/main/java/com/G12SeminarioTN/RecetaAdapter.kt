@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.G12SeminarioTN.RecetaConAtributos.Receta
+import com.G12SeminarioTN.API.Receta
 
 
-class RecetaAdapter (var recetas: List<Receta>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
+class RecetaAdapter (var recetas: Array<Receta>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
 
     class RecetaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -33,14 +33,14 @@ class RecetaAdapter (var recetas: List<Receta>, var context: Context): RecyclerV
 
     override fun onBindViewHolder(holder: RecetaViewHolder, position: Int) {
         val item = recetas.get(position)
-        holder.txtNombre.text = item.label
-        holder.txtOrigen.text = item.source
+        holder.txtNombre.text = item.name
+        holder.txtOrigen.text = item.cuisine
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DetallesReceta::class.java)
-            intent.putExtra("nombre", item.label)
-            intent.putExtra("origen", item.source)
-            intent.putExtra("ingredientes", item.summary)
+            intent.putExtra("nombre", item.name)
+            intent.putExtra("origen", item.cuisine)
+            intent.putExtra("ingredientes", item.difficulty)
             context.startActivity(intent)
         }
     }

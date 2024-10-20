@@ -15,12 +15,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.EdamamResponse
+import com.G12SeminarioTN.API.PostEndpoints
 import com.G12SeminarioTN.API.RetroFitClient
+import com.G12SeminarioTN.API.RetroFitClient.retrofit
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 
 
 class ListadoRecetaActivity : AppCompatActivity() {
@@ -40,27 +49,47 @@ class ListadoRecetaActivity : AppCompatActivity() {
         val appId = "e8c97bc9"
         val appKey = "0933cae228048250ec7991c28a0e9ae0"
 
-        val apiService = RetroFitClient.apiService
+        val apiService: PostEndpoints = retrofit.create(PostEndpoints::class.java)
         val call = apiService.searchRecipes("pollo", appId, appKey)
 
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(emptyList(), this@ListadoRecetaActivity)
         rvReceta.adapter = recetaAdapter
 
-        call.enqueue(object : Callback<EdamamResponse> {
+        call.enqueue(object: Callback<EdamamResponse> {
             override fun onResponse(call: Call<EdamamResponse>, response: Response<EdamamResponse>) {
+                if(response.isSuccessful){
+                    val recetas = response.body()!!.hits
+                    Log.e("API BIEN", "YIPEEEEE")
+                }
+            }
 
-                if (response.isSuccessful && response.body() != null) {
-                    val recetas = response.body()!!.hits.map { it.recipe }
-                    recetaAdapter = RecetaAdapter(recetas, this@ListadoRecetaActivity )
-                    rvReceta.adapter = recetaAdapter
+            override fun onFailure(call: Call<EdamamResponse>, t: Throwable) {
+                Log.e("API Error", "Failure")
+            }
+        })
+
+        /*
+        call.enqueue(object : Callback<EdamamResponse> {
+            override fun onResponse(call: Call<EdamamResponse>, response: EdamamResponse) {
+                if (response.isSuccessful) {
+                    val recetas = response.hits.map { it.recipe }
+                    Log.d("API Response", "Recetas: $recetas")
+                } else {
+                    Log.e(
+                        "API Error",
+                        "Error: ${response.code()} - ${response.errorBody()?.string()}"
+                    )
                 }
 
             }
+
             override fun onFailure(call: Call<EdamamResponse>, t: Throwable) {
-                Log.e("Error", t.message ?: "Error desconocido")
+                Log.e("API Error", "Failure: ${t.message}")
             }
         })
+        */
+
 
 
 
@@ -72,7 +101,6 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
 
     }
-
 
     private fun reproducirMusica() {
         // Crear un hilo para reproducir música

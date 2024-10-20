@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "usuario_entity")
-data class Usuario(
+public class Usuario(
     @ColumnInfo(name = "usuario") var usuario: String,
     @ColumnInfo(name = "contraseña") var contraseña: String,
     @ColumnInfo(name = "mail") var mail: String

@@ -57,10 +57,6 @@ class LoginActivity : AppCompatActivity() {
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
 
 
-
-
-
-
         // Almacenar credenciales si el checkbox está marcado
         cbRecordarUsuario.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

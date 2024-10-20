@@ -38,6 +38,12 @@
         android:hint="Ingresar usuario"
         android:textStyle="bold"/>
 
+    <!-- Contenedor para el mensaje de error del usuario -->
+    <FrameLayout
+        android:id="@+id/errorContainerUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <!-- Campo de texto para la contraseña con ícono de llave -->
     <EditText
         android:id="@+id/etPassword"
@@ -51,6 +57,12 @@
         android:drawableStart="@drawable/baseline_key_24"
         android:drawablePadding="10dp"
         android:textStyle="bold"/>
+
+    <!-- Contenedor para el mensaje de error de la contraseña -->
+    <FrameLayout
+        android:id="@+id/errorContainerPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <!-- Checkbox para recordar usuario -->
     <CheckBox

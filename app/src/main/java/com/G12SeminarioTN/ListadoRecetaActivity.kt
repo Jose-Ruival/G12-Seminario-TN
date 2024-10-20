@@ -54,6 +54,8 @@ class ListadoRecetaActivity : AppCompatActivity() {
                     val recetas = response.body()!!.hits.map { it.recipe }
                     recetaAdapter = RecetaAdapter(recetas, this@ListadoRecetaActivity )
                     rvReceta.adapter = recetaAdapter
+                } else {
+                    Log.e("API Response", "Error en la respuesta: ${response.errorBody()?.string()}")
                 }
 
             }

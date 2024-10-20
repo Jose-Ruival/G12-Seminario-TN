@@ -34,26 +34,67 @@ class RegisterActivity : AppCompatActivity() {
         etPasswordR = findViewById(R.id.etPasswordR)
         btnRegistrarseR = findViewById(R.id.btnRegistrarR)
 
+        // Agregar los fragments de error
+        agregarFragmentError(R.id.errorEmailContainer)
+        agregarFragmentError(R.id.errorUsuarioContainer)
+        agregarFragmentError(R.id.errorPasswordContainer)
+
 
 
         btnRegistrarseR.setOnClickListener {
 
-            var usuario =  etUsuarioR.text.toString()
-            var contraseña= etPasswordR.text.toString()
-            var email = etEmailR.text.toString()
+            val usuario = etUsuarioR.text.toString()
+            val contraseña = etPasswordR.text.toString()
+            val email = etEmailR.text.toString()
 
-            if (usuario.isEmpty() || contraseña.isEmpty() || email.isEmpty()){
-                var mensaje= "Completar Datos"
-                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+            // Limpiar errores antes de la validación
+            limpiarErrores()
 
-            }else{
-                var nuevoUsuario = Usuario(usuario, contraseña, email)
+            var hayError = false
+
+            // Validación de campos
+            if (email.isEmpty()) {
+                val errorFragmentEmail = supportFragmentManager.findFragmentById(R.id.errorEmailContainer) as? ErrorFragment
+                errorFragmentEmail?.mostrarError()
+                hayError = true
+            }
+
+            if (usuario.isEmpty()) {
+                val errorFragmentUsuario = supportFragmentManager.findFragmentById(R.id.errorUsuarioContainer) as? ErrorFragment
+                errorFragmentUsuario?.mostrarError()
+                hayError = true
+            }
+
+            if (contraseña.isEmpty()) {
+                val errorFragmentPassword = supportFragmentManager.findFragmentById(R.id.errorPasswordContainer) as? ErrorFragment
+                errorFragmentPassword?.mostrarError()
+                hayError = true
+            }
+
+            // Si no hay errores, crear el usuario
+            if (!hayError) {
+                val nuevoUsuario = Usuario(usuario, contraseña, email)
                 UsuarioDatabase.getDatabase(applicationContext).usuarioDao().insert(nuevoUsuario)
                 val intent = Intent(this, viewerterminosycondiciones::class.java)
                 startActivity(intent)
             }
         }
+    }
 
+    private fun limpiarErrores() {
+        val errorFragmentEmail = supportFragmentManager.findFragmentById(R.id.errorEmailContainer) as? ErrorFragment
+        val errorFragmentUsuario = supportFragmentManager.findFragmentById(R.id.errorUsuarioContainer) as? ErrorFragment
+        val errorFragmentPassword = supportFragmentManager.findFragmentById(R.id.errorPasswordContainer) as? ErrorFragment
 
+        errorFragmentEmail?.ocultarError()
+        errorFragmentUsuario?.ocultarError()
+        errorFragmentPassword?.ocultarError()
+    }
+
+    private fun agregarFragmentError(containerId: Int) {
+        val fragment = ErrorFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(containerId, fragment)
+            .commit()
     }
 }

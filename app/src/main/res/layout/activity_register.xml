@@ -38,6 +38,11 @@
         android:backgroundTint="@color/medio"
         android:padding="12dp" />
 
+    <FrameLayout
+        android:id="@+id/errorEmailContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <!-- Campo de texto para usuario -->
     <EditText
         android:id="@+id/etUsuarioR"
@@ -54,6 +59,11 @@
         android:backgroundTint="@color/medio"
         android:padding="12dp" />
 
+    <FrameLayout
+        android:id="@+id/errorUsuarioContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <!-- Campo de texto para contraseña -->
     <EditText
         android:id="@+id/etPasswordR"
@@ -69,6 +79,13 @@
         android:textStyle="bold"
         android:backgroundTint="@color/medio"
         android:padding="12dp" />
+
+
+    <FrameLayout
+        android:id="@+id/errorPasswordContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 
     <!-- Botón para registrar usuario -->
     <Button

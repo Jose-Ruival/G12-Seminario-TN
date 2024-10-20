@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.FragmentManager
 
 class viewerterminosycondiciones : AppCompatActivity() {
     lateinit var checkBox: CheckBox
@@ -50,5 +51,7 @@ class viewerterminosycondiciones : AppCompatActivity() {
             val intent = Intent(this, ListadoRecetaActivity::class.java)
             startActivity(intent)
         }
+
     }
+
 }

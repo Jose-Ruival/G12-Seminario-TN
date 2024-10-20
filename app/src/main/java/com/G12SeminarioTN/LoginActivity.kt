@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
 
 
+
     private val CHANNEL_ID = "canal_recordar_usuario"
     private val NOTIFICATION_ID = 1
 
@@ -39,6 +40,19 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        // Añadir el fragmento de error para el usuario
+        val errorUsuarioFragment = ErrorFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.errorContainerUsuario, errorUsuarioFragment)
+            .commit()
+
+        // Añadir el fragmento de error para la contraseña
+        val errorPasswordFragment = ErrorFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.errorContainerPassword, errorPasswordFragment)
+            .commit()
 
 
         // Crear canal de notificación
@@ -73,6 +87,20 @@ class LoginActivity : AppCompatActivity() {
         btnIniciarSesion.setOnClickListener {
             var usuario = etUsuario.text.toString()
             var pass = etPassword.text.toString()
+
+            // Verificar los campos y mostrar/ocultar los errores
+            if (usuario.isEmpty()) {
+                errorUsuarioFragment.mostrarError()
+            } else {
+                errorUsuarioFragment.ocultarError()
+            }
+
+            if (pass.isEmpty()) {
+                errorPasswordFragment.mostrarError()
+            } else {
+                errorPasswordFragment.ocultarError()
+            }
+
 
 
             if (usuario.isEmpty() || pass.isEmpty()) {

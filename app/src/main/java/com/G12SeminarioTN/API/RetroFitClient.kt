@@ -11,7 +11,7 @@ object RetroFitClient {
 
     // Crear la instancia de Moshi
     private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
+        .add(KotlinJsonAdapterFactory()) // Agregar soporte para Kotlin
         .build()
 
     // Crear la instancia de Retrofit
@@ -19,4 +19,6 @@ object RetroFitClient {
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi)) // Usar Moshi como convertidor
         .build()
+
+    val apiService: PostEndpoints = retrofit.create(PostEndpoints::class.java)
 }

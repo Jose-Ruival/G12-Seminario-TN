@@ -39,20 +39,14 @@
     </androidx.appcompat.widget.Toolbar>
 
     <!-- ScrollView para términos -->
-    <ScrollView
+
+    <fragment
+        android:id="@+id/contenedor_fragmento_textotermycon"
+        class="com.G12SeminarioTN.FragmentoTextoTermyCon"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="@string/lorem_ipsum"
-            android:textSize="16sp"
-            android:fontFamily="monospace"
-            android:textColor="@color/black"/>
-    </ScrollView>
 
     <!-- Checkbox para aceptar los términos -->
     <CheckBox

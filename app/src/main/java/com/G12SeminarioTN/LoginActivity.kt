@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.G12SeminarioTN.Usuario.UsuarioDatabase
-
 
 class LoginActivity : AppCompatActivity() {
 
@@ -107,8 +105,8 @@ class LoginActivity : AppCompatActivity() {
                 val mensaje = "Completar Datos"
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
             } else {
-                val db = UsuarioDatabase.getDatabase(this)
-                val usuarioDao = db.usuarioDao()
+                val db = UserDatabase.getDatabase(this)
+                val usuarioDao = db.UserDao()
 
 
                 val usuarioExiste = usuarioDao.getUsuarioNombre(usuario)

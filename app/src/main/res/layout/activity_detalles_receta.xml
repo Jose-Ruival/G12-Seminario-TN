@@ -29,7 +29,10 @@
         android:fontFamily="monospace"
         android:background="@color/medio"
         />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +42,8 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:fontFamily="monospace"
-        android:background="@color/medio_clarito"/>
+        android:background="@color/medio_clarito"
+        android:layout_weight="1"/>
 
 
 
@@ -51,9 +55,101 @@
         android:text=""
         android:textSize="23sp"
         android:gravity="center"
-        android:layout_margin="5sp"
         android:textColor="@color/black"
-        android:fontFamily="monospace"/>
+        android:fontFamily="monospace"
+        android:background="@color/medio_clarito"
+        android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_tiempo_preparacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo de preparacion:"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_tiempo_preparacion_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_tiempo_coccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo de coccion:"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_tiempo_coccion_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_calorias_por_porcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calorias por porcion:"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_calorias_por_porcion_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 
     <TextView
@@ -71,6 +167,31 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_ingredientes_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"/>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instrucciones"
+        android:textSize="26sp"
+        android:gravity="center"
+        android:layout_margin="5sp"
+        android:textColor="@color/black"
+        android:fontFamily="monospace"
+        android:background="@color/medio_clarito"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_instrucciones_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""

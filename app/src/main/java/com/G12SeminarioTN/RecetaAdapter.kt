@@ -40,7 +40,13 @@ class RecetaAdapter (var recetas: Array<Receta>, var context: Context): Recycler
             val intent = Intent(context, DetallesReceta::class.java)
             intent.putExtra("nombre", item.name)
             intent.putExtra("origen", item.cuisine)
-            intent.putExtra("ingredientes", item.caloriesPerServing)
+            intent.putExtra("calorias por porcion", item.caloriesPerServing)
+            intent.putExtra("tiempo de preparacion", item.prepTimeMinutes)
+            intent.putExtra("tiempo de coccion", item.cookTimeMinutes)
+            intent.putStringArrayListExtra("ingredientes", ArrayList(item.ingredients))
+            intent.putStringArrayListExtra("instrucciones", ArrayList(item.instructions))
+
+
             context.startActivity(intent)
         }
     }

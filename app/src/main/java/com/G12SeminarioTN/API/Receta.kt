@@ -6,9 +6,9 @@ data class Receta(
     @Json(name = "name")
     val name: String,
     @Json (name = "ingredients")
-    val ingredients: Array<String>,
+    val ingredients: List<String>,
     @Json (name = "instructions")
-    val instructions: Array<String>,
+    val instructions: List<String>,
     @Json (name = "prepTimeMinutes")
     val prepTimeMinutes: Int,
     @Json (name = "cookTimeMinutes")
@@ -18,9 +18,7 @@ data class Receta(
     @Json (name = "caloriesPerServing")
     val caloriesPerServing: Int,
     @Json (name = "image")
-    val image: String,
-    @Json (name = "mealType")
-    val mealType: String
+    val image: String
     )
 
 

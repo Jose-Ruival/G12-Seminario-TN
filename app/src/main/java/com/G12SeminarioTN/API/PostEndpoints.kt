@@ -11,6 +11,8 @@ interface PostEndpoints {
     fun searchRecipes(
         @Query ("app_id") app_id:String,
         @Query ("app_key") app_key:String,
-        @Query ("q") q:String
+        @Query ("q") q:String,
+        @Query ("from") from:Int,
+        @Query ("to")to:Int
     ): Call<Recetas>
 }

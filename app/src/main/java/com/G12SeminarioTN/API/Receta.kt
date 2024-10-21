@@ -12,7 +12,7 @@ data class Receta(
     @Json (name = "url")
     val url: String,
     @Json (name = "yield")
-    val yield: Int,
+    val yield: Float,
     @Json (name = "calories")
     val calories: Float,
     @Json (name = "cuisineType")

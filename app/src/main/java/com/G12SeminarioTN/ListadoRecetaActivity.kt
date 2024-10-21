@@ -14,9 +14,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.Recetas
 import com.G12SeminarioTN.API.RetroFitClient
+import com.G12SeminarioTN.API.RetroFitClient.apiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,27 +44,14 @@ class ListadoRecetaActivity : AppCompatActivity() {
         val appKey = "51ea5099c29787124e81371d2592b8f0"
 
         val apiService = RetroFitClient.apiService
-        val call = apiService.searchRecipes(appId,appKey,"chicken")
+
 
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(emptyList(), this@ListadoRecetaActivity)
         rvReceta.adapter = recetaAdapter
 
-        call.enqueue(object : Callback<Recetas> {
-            override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
-                if (response.isSuccessful && response.body() != null) {
-                    val recetas = response.body()
-                    if (recetas != null) {
-                        recetaAdapter = RecetaAdapter(recetas.hits, this@ListadoRecetaActivity)
-                    }
-                    rvReceta.adapter = recetaAdapter
-                } else  Log.e("NO FUNCIONA", "ASDASDASDAS")
-            }
-            override fun onFailure(call: Call<Recetas>, t: Throwable) {
-                Log.e("Error", t.message ?: "Error desconocido")
-            }
-        })
 
+        buscarRecetas(appId,appKey,"pie",0,20)
 
 
 
@@ -72,6 +63,26 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
     }
 
+    private fun buscarRecetas(appId: String, appKey: String, query: String, from: Int, to: Int) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val call = apiService.searchRecipes(appId, appKey, query, from, to)
+            call.enqueue(object : Callback<Recetas> {
+                override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val recetas = response.body()
+                        if (recetas != null) {
+                            recetaAdapter = RecetaAdapter(recetas.hits, this@ListadoRecetaActivity)
+                        }
+                        rvReceta.adapter = recetaAdapter
+                    } else Log.e("NO FUNCIONA", "ASDASDASDAS")
+                }
+
+                override fun onFailure(call: Call<Recetas>, t: Throwable) {
+                    Log.e("Error", t.message ?: "Error desconocido")
+                }
+            })
+        }
+    }
 
     private fun reproducirMusica() {
         // Crear un hilo para reproducir música

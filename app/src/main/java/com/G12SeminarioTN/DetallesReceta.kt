@@ -12,7 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.G12SeminarioTN.API.Ingredient
+import com.G12SeminarioTN.API.Recetas
+import com.G12SeminarioTN.API.RetroFitClient.apiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetallesReceta : AppCompatActivity() {
@@ -29,6 +38,8 @@ class DetallesReceta : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalles_receta)
 
+        val appId = "595e6eef"
+        val appKey = "51ea5099c29787124e81371d2592b8f0"
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -45,7 +56,30 @@ class DetallesReceta : AppCompatActivity() {
         tv_origen_detalle.text = intent.getStringExtra("origen").toString()
         tv_ingredientes_detalle.text = (intent.getSerializableExtra("ingredientes") as? ArrayList<Ingredient>).toString()
        // tv_ingredientes_detalle.text = intent.getStringExtra("ingredientes").toString()
+
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val call = apiService.searchRecipes(appId, appKey, intent.getStringExtra("nombre").toString(), 0, 1)
+            call.enqueue(object : Callback<Recetas> {
+                override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val recetas = response.body()
+
+
+
+
+
+
+                    } else Log.e("NO FUNCIONA", "ASDASDASDAS")
+                }
+
+                override fun onFailure(call: Call<Recetas>, t: Throwable) {
+                    Log.e("Error", t.message ?: "Error desconocido")
+                }
+            })
+        }
     }
+
 
 
     private fun reproducirMusica() {

@@ -1,113 +1,199 @@
 package com.G12SeminarioTN
 
+
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 class LoginActivity : AppCompatActivity() {
 
+
     lateinit var etUsuario: EditText
     lateinit var etPassword: EditText
-    lateinit var cbRecordarusuario: CheckBox
+    lateinit var cbRecordarUsuario: CheckBox
     lateinit var btnRegistrarse: Button
     lateinit var btnIniciarSesion: Button
+    lateinit var toolbar: Toolbar
+
+
+
+    private val CHANNEL_ID = "canal_recordar_usuario"
+    private val NOTIFICATION_ID = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+
+        // Añadir el fragmento de error para el usuario
+        val errorUsuarioFragment = ErrorFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.errorContainerUsuario, errorUsuarioFragment)
+            .commit()
+
+        // Añadir el fragmento de error para la contraseña
+        val errorPasswordFragment = ErrorFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.errorContainerPassword, errorPasswordFragment)
+            .commit()
+
+
+        // Crear canal de notificación
+        crearCanalDeNotificacion()
+
+
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
+
 
         etUsuario = findViewById(R.id.etUsuario)
         etPassword = findViewById(R.id.etPassword)
-        cbRecordarusuario = findViewById(R.id.cbRecordarUsuario)
+        cbRecordarUsuario = findViewById(R.id.cbRecordarUsuario)
         btnRegistrarse = findViewById(R.id.btnRegistrar)
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
 
-        var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
-        var usuarioGuardado = preferencias.getString(resources.getString(R.string.nombre_usuario), "")
-        var passwordGuardado = preferencias.getString(resources.getString(R.string.password_usuario), "")
 
-        if(usuarioGuardado!="" && passwordGuardado!= ""){
-            if (usuarioGuardado != null) {
-                startMainActivity(usuarioGuardado)
+
+        // Almacenar credenciales si el checkbox está marcado
+        cbRecordarUsuario.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                mostrarNotificacion("Recordar usuario", "¿Querés que recordemos tu usuario?")
             }
         }
 
 
-
-
-        btnRegistrarse.setOnClickListener {
-
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
+        // Lógica para el botón de iniciar sesión
         btnIniciarSesion.setOnClickListener {
-
-            var usuario =  etUsuario.text.toString()
+            var usuario = etUsuario.text.toString()
             var pass = etPassword.text.toString()
-            if (usuario.isEmpty() || pass.isEmpty()){
-                var mensaje= "Completar Datos"
+
+            // Verificar los campos y mostrar/ocultar los errores
+            if (usuario.isEmpty()) {
+                errorUsuarioFragment.mostrarError()
+            } else {
+                errorUsuarioFragment.ocultarError()
+            }
+
+            if (pass.isEmpty()) {
+                errorPasswordFragment.mostrarError()
+            } else {
+                errorPasswordFragment.ocultarError()
+            }
+
+
+
+            if (usuario.isEmpty() || pass.isEmpty()) {
+                val mensaje = "Completar Datos"
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+            } else {
+                val db = UserDatabase.getDatabase(this)
+                val usuarioDao = db.UserDao()
 
-            }else{
-
-                val db = UsuarioDatabase.getDatabase(this)
-                val usuarioDao = db.usuarioDao()
 
                 val usuarioExiste = usuarioDao.getUsuarioNombre(usuario)
 
 
-
-                if(usuarioExiste == null){
-                    var mensaje2 = "El Usuario no Existe"
+                if (usuarioExiste == null) {
+                    val mensaje2 = "El Usuario no Existe"
                     Toast.makeText(this, mensaje2, Toast.LENGTH_SHORT).show()
-                }else{
-
-
+                } else {
                     if (usuarioExiste.contraseña != pass.toString()) {
-
-                        var mensaje3 = "Contraseña incorrecta"
+                        val mensaje3 = "Contraseña incorrecta"
                         Toast.makeText(this, mensaje3, Toast.LENGTH_SHORT).show()
-                    }else{
-
-                        if (cbRecordarusuario.isChecked) {
-                            var preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
+                    } else {
+                        if (cbRecordarUsuario.isChecked) {
+                            val preferencias = getSharedPreferences(resources.getString(R.string.sp_credenciales), MODE_PRIVATE)
                             preferencias.edit().putString(resources.getString(R.string.nombre_usuario), usuario).apply()
-                            preferencias.edit().putString(resources.getString(R.string.password_usuario), usuario).apply()
+                            preferencias.edit().putString(resources.getString(R.string.password_usuario), pass).apply()
                         }
-                        startMainActivity(usuario)
-
+                        iniciarMainActivity(usuario)
                     }
-
-
                 }
-
-
             }
-
         }
 
+
+        // Configuración de botón para registrarse
+        btnRegistrarse.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    private fun startMainActivity(usuario: String) {
+
+    // Crear el canal de notificaciones
+    private fun crearCanalDeNotificacion() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val nombre = "Canal Recordar Usuario"
+            val descripcion = "Canal para notificaciones de recordar usuario"
+            val importancia = NotificationManager.IMPORTANCE_HIGH
+            val canal = NotificationChannel(CHANNEL_ID, nombre, importancia).apply {
+                description = descripcion
+            }
+
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(canal)
+        }
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private fun mostrarNotificacion(titulo: String, contenido: String) {
+
+
+        val intentMainActivity = Intent(this, MainActivity::class.java)
+        val pendingIntentMainActivity: PendingIntent = PendingIntent.getActivity(this, 0, intentMainActivity, PendingIntent.FLAG_IMMUTABLE)
+
+
+        val imagenGrande = BitmapFactory.decodeResource(resources, R.drawable.logo)
+
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.logo)
+            .setContentTitle(titulo)
+            .setContentText(contenido)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setLargeIcon(imagenGrande)
+            .addAction(R.drawable.baseline_check_24, "Aceptar", pendingIntentMainActivity)
+            .setAutoCancel(true)
+
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(NOTIFICATION_ID, builder.build())
+        }
+    }
+
+
+    // Navegar a la pantalla principal
+    private fun iniciarMainActivity(usuario: String) {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(resources.getString(R.string.nombre_usuario), usuario)
+        intent.putExtra("usuario", usuario)
         startActivity(intent)
         finish()
     }
+
+
 }
+
+
+
+
+

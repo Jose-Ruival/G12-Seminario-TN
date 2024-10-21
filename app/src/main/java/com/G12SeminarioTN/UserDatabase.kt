@@ -5,19 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Usuario::class], version = 1)
-
-abstract class UsuarioDatabase: RoomDatabase() {
-    abstract fun usuarioDao(): UsuarioDao
-
+@Database(entities = [User::class], version = 1)
+abstract class UserDatabase: RoomDatabase() {
+    abstract fun UserDao(): UserDao
     companion object{
-        private var INSTANCIA: UsuarioDatabase? = null
-        fun getDatabase(context: Context): UsuarioDatabase {
+        private var INSTANCIA: UserDatabase? = null
+        fun getDatabase(context: Context): UserDatabase {
             if(INSTANCIA == null){
                 synchronized(this){
                     INSTANCIA = Room.databaseBuilder(
                         context,
-                        UsuarioDatabase::class.java, "usuario_database")
+                        UserDatabase::class.java, "user_database")
                         .allowMainThreadQueries()
                         .fallbackToDestructiveMigration()
                         .build()
@@ -26,5 +24,4 @@ abstract class UsuarioDatabase: RoomDatabase() {
             return INSTANCIA!!
         }
     }
-
 }

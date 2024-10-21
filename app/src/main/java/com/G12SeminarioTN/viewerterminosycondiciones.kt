@@ -6,12 +6,15 @@ import android.widget.Button
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.FragmentManager
 
 class viewerterminosycondiciones : AppCompatActivity() {
     lateinit var checkBox: CheckBox
     lateinit var boton_aceptar_tyc : Button
+    lateinit var toolbar: Toolbar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +26,12 @@ class viewerterminosycondiciones : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
+
         }
+        toolbar= findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = resources.getString(R.string.name2)
 
 
         // Referencia a los elementos en el archivo XML
@@ -43,5 +51,7 @@ class viewerterminosycondiciones : AppCompatActivity() {
             val intent = Intent(this, ListadoRecetaActivity::class.java)
             startActivity(intent)
         }
+
     }
+
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -8,81 +7,104 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".RegisterActivity"
-    android:background="@color/clarito">
+    android:background="@color/clarito"
+    android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:fontFamily="monospace"
-        android:text="INGRESAR EMAIL"
-        android:textSize="27sp"
-        android:textStyle="bold" />
 
+    <!-- Logo de la aplicación -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img"
+        android:contentDescription="@string/name"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:elevation="4dp" />
+
+    <!-- Campo de texto para email -->
     <EditText
         android:id="@+id/etEmailR"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="textEmailAddress"
-        android:textSize="27sp"
-        tools:text="Email"
-        android:fontFamily="monospace"/>
+        android:textSize="22sp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="10dp"
+        android:hint="Ingresar email"
+        android:textStyle="bold"
+        android:backgroundTint="@color/medio"
+        android:padding="12dp" />
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/errorEmailContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="INGRESAR USUARIO"
-        android:textSize="27sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"/>
 
+    <!-- Campo de texto para usuario -->
     <EditText
         android:id="@+id/etUsuarioR"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="text"
-        android:textSize="27sp"
-        tools:text="Nombre de usuario"
-        android:fontFamily="monospace"/>
+        android:textSize="22sp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:drawablePadding="10dp"
+        android:hint="Ingresar usuario"
+        android:textStyle="bold"
+        android:backgroundTint="@color/medio"
+        android:padding="12dp" />
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/errorUsuarioContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INGRESAR CONTRASEÑA"
-        android:textSize="27sp"
-        android:fontFamily="monospace"
-        android:textStyle="bold"/>
+        android:layout_height="wrap_content"/>
 
+    <!-- Campo de texto para contraseña -->
     <EditText
         android:id="@+id/etPasswordR"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="textPassword"
-        android:textSize="27sp"
-        android:fontFamily="monospace"
-        />
+        android:textSize="22sp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/baseline_key_24"
+        android:drawablePadding="10dp"
+        android:hint="Ingresar contraseña"
+        android:textStyle="bold"
+        android:backgroundTint="@color/medio"
+        android:padding="12dp" />
 
 
-
-        <Button
-            android:id="@+id/btnRegistrarR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:layout_marginRight="5dp"
-            android:background="#678c99"
-            android:text="CREAR\nUSUARIO"
-            android:textSize="20sp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:fontFamily="monospace"
-            />
+    <FrameLayout
+        android:id="@+id/errorPasswordContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
+    <!-- Botón para registrar usuario -->
+    <Button
+        android:id="@+id/btnRegistrarR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/rounded_button"
+        android:text="Crear usuario"
+        android:textSize="20sp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:fontFamily="sans-serif"
+        android:drawableStart="@drawable/baseline_person_add_24"
+        android:drawablePadding="10dp"
+        android:textColor="@color/medio_clarito"
+        android:elevation="4dp" />
 
 </LinearLayout>
+

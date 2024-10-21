@@ -8,22 +8,189 @@
     android:layout_height="match_parent"
     tools:context=".ListadoRecetaActivity"
     android:background="@color/clarito"
-    >
+    android:fitsSystemWindows="true"> <!-- Agregado aquí -->
 
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/primary_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+        <EditText
+            android:id="@+id/et_lista"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Busca tu receta!"
+            android:layout_marginStart="70dp"
+            />
+        <Button
+            android:id="@+id/bt_lista"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:background="@color/medio"
+            android:drawableTop="@drawable/baseline_search_24"
+            android:paddingTop="15dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tipo"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/medio_clarito"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Origen"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/medio_clarito"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RadioGroup
+            android:id="@+id/rg_tipo"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rb_desayuno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Breakfast" />
+
+            <RadioButton
+                android:id="@+id/rb_almuerzo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lunch" />
+
+            <RadioButton
+                android:id="@+id/rb_merienda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teatime" />
+
+            <RadioButton
+                android:id="@+id/rb_cena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dinner" />
+
+            <RadioButton
+                android:id="@+id/rb_snack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Snack" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_origen1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+                <RadioButton
+                    android:id="@+id/rb_estadounidense"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="American" />
+
+                <RadioButton
+                    android:id="@+id/rb_japonesa"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Japanese" />
+
+                <RadioButton
+                    android:id="@+id/rb_caribena"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Caribbean" />
+
+                <RadioButton
+                    android:id="@+id/rb_china"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Chinese" />
+
+                <RadioButton
+                    android:id="@+id/rb_italiana"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Italian" />
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rg_origen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+                <RadioButton
+                    android:id="@+id/rb_francesa"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="French" />
+
+                <RadioButton
+                    android:id="@+id/rb_mexicana"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mexican" />
+
+                <RadioButton
+                    android:id="@+id/rb_sudamericana"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="South American" />
+
+                <RadioButton
+                    android:id="@+id/rb_nordica"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nordic" />
+
+                <RadioButton
+                    android:id="@+id/rb_india"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Indian" />
+
+        </RadioGroup>
+
+    </LinearLayout>
     <TextView
         android:text="@string/titulo_Lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:fontFamily="monospace"
-        android:textColor="@color/black"/>
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:background="@color/medio"
+        android:layout_marginTop="30dp"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_recetas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_receta"/>
-
-
+        tools:listitem="@layout/item_receta" />
 </LinearLayout>

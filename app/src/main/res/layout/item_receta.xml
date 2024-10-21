@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cv_receta"
     android:layout_width="match_parent"
-    android:layout_height="40sp"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/medio_clarito"
     android:layout_marginTop="5sp"
     android:layout_marginBottom="5sp">
@@ -11,23 +11,62 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="2">
 
-        <TextView
-            android:id="@+id/tv_nombre"
-            android:layout_width="320sp"
+        <!-- Trabajo con nombre y origen -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_origen"
-            android:layout_width="320sp"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.5"/>
+            <TextView
+                android:id="@+id/tv_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_gravity="start" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_calorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Calorias"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/tv_calorias_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Trabajo con la imagen -->
+        <ImageView
+            android:id="@+id/iv_imagen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            >
+
+
+         </ImageView>
+
 
     </LinearLayout>
 

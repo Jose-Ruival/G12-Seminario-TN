@@ -61,16 +61,18 @@
         android:layout_weight="1"/>
     </LinearLayout>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/tv_tiempo_preparacion"
+            android:id="@+id/tv_porciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tiempo de preparacion:"
+            android:text="Porciones:"
             android:textSize="13sp"
             android:gravity="center"
             android:layout_margin="5sp"
@@ -79,7 +81,7 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tv_tiempo_preparacion_detalle"
+            android:id="@+id/tv_prociones_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -97,49 +99,19 @@
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/tv_tiempo_coccion"
+            android:id="@+id/tv_calorias_totales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tiempo de coccion:"
-            android:textSize="13sp"
-            android:gravity="center"
             android:layout_margin="5sp"
-            android:textColor="@color/black"
+            android:layout_weight="1"
             android:fontFamily="monospace"
-            android:layout_weight="1"/>
+            android:gravity="center"
+            android:text="Calorias totales:"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
 
         <TextView
-            android:id="@+id/tv_tiempo_coccion_detalle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="13sp"
-            android:gravity="center"
-            android:layout_margin="5sp"
-            android:textColor="@color/black"
-            android:fontFamily="monospace"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2">
-
-        <TextView
-            android:id="@+id/tv_calorias_por_porcion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calorias por porcion:"
-            android:textSize="13sp"
-            android:gravity="center"
-            android:layout_margin="5sp"
-            android:textColor="@color/black"
-            android:fontFamily="monospace"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/tv_calorias_por_porcion_detalle"
+            android:id="@+id/tv_calorias_totales_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
@@ -177,11 +149,41 @@
             android:fontFamily="monospace"/>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="1"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="Fuente"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_source_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Instrucciones"
-        android:textSize="26sp"
+        android:text="Accede a las instrucciones desde aqui"
+        android:textSize="16sp"
         android:gravity="center"
         android:layout_margin="5sp"
         android:textColor="@color/black"
@@ -191,7 +193,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tv_instrucciones_detalle"
+            android:id="@+id/tv_url_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""

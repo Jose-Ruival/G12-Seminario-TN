@@ -29,6 +29,11 @@ class DetallesReceta : AppCompatActivity() {
     lateinit var tv_nombre_detalle: TextView
     lateinit var tv_origen_detalle: TextView
     lateinit var tv_ingredientes_detalle: TextView
+    lateinit var tv_porciones_detalle: TextView
+    lateinit var tv_calorias_totales_detalle: TextView
+    lateinit var tv_url_detalle: TextView
+    lateinit var tv_source_detalle: TextView
+
     private var mediaPlayer: MediaPlayer? = null
     private var isDownloading = false // Estado de descarga
     private var descargaCompletada = false // Estado de si ya se completó una descarga
@@ -49,12 +54,15 @@ class DetallesReceta : AppCompatActivity() {
         tv_nombre_detalle = findViewById(R.id.tv_nombre_detalle)
         tv_origen_detalle = findViewById(R.id.tv_origen_detalle)
         tv_ingredientes_detalle = findViewById(R.id.tv_ingredientes_detalle)
+        tv_porciones_detalle = findViewById(R.id.tv_prociones_detalle)
+        tv_calorias_totales_detalle = findViewById(R.id.tv_calorias_totales_detalle)
+        tv_source_detalle = findViewById(R.id.tv_source_detalle)
 
 
         val intent = intent
         tv_nombre_detalle.text = intent.getStringExtra("nombre").toString()
-        tv_origen_detalle.text = intent.getStringExtra("origen").toString()
-        tv_ingredientes_detalle.text = (intent.getSerializableExtra("ingredientes") as? ArrayList<Ingredient>).toString()
+       // tv_origen_detalle.text = intent.getStringExtra("origen").toString()
+       // tv_ingredientes_detalle.text = (intent.getSerializableExtra("ingredientes") as? ArrayList<Ingredient>).toString()
        // tv_ingredientes_detalle.text = intent.getStringExtra("ingredientes").toString()
 
 
@@ -65,8 +73,17 @@ class DetallesReceta : AppCompatActivity() {
                     if (response.isSuccessful && response.body() != null) {
                         val recetas = response.body()
 
+                        if (recetas != null) {
+
+                            tv_origen_detalle.text = recetas.hits.get(0).recipe.cuisineType.toString()
+                            tv_url_detalle.text = recetas.hits.get(0).recipe.url
+                            tv_ingredientes_detalle.text = recetas.hits.get(0).recipe.ingredients.toString()
+                            tv_porciones_detalle.text = recetas.hits.get(0).recipe.yield.toString()
+                            tv_calorias_totales_detalle.text = recetas.hits.get(0).recipe.calories.toString()
+                            tv_source_detalle.text = recetas.hits.get(0).recipe.source
 
 
+                        }
 
 
 

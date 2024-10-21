@@ -9,8 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.G12SeminarioTN.Usuario.Usuario
-import com.G12SeminarioTN.Usuario.UsuarioDatabase
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -73,8 +71,8 @@ class RegisterActivity : AppCompatActivity() {
 
             // Si no hay errores, crear el usuario
             if (!hayError) {
-                val nuevoUsuario = Usuario(usuario, contraseña, email)
-                UsuarioDatabase.getDatabase(applicationContext).usuarioDao().insert(nuevoUsuario)
+                val nuevoUsuario = User(usuario, contraseña, email)
+                UserDatabase.getDatabase(applicationContext).UserDao().insert(nuevoUsuario)
                 val intent = Intent(this, viewerterminosycondiciones::class.java)
                 startActivity(intent)
             }

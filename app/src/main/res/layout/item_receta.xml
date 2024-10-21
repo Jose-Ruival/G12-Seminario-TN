@@ -57,12 +57,14 @@
 
         <!-- Trabajo con la imagen -->
         <ImageView
-            android:id="@+id/tv_imagen"
+            android:id="@+id/iv_imagen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="centerCrop">
-          <!--  android:src="" aca va la url de la imagen -->
+            android:scaleType="centerCrop"
+            android:src="@drawable/my_picture">
+
+
          </ImageView>
 
 

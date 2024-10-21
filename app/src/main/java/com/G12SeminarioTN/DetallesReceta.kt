@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import com.G12SeminarioTN.API.Ingredient
 import com.G12SeminarioTN.API.Recetas
@@ -33,6 +34,7 @@ class DetallesReceta : AppCompatActivity() {
     lateinit var tv_calorias_totales_detalle: TextView
     lateinit var tv_url_detalle: TextView
     lateinit var tv_source_detalle: TextView
+    lateinit var iv_imagen: ImageView
 
     private var mediaPlayer: MediaPlayer? = null
     private var isDownloading = false // Estado de descarga

@@ -5,9 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.Hit
+import com.squareup.picasso.Picasso
 
 
 class RecetaAdapter(var recetas: List<Hit>, var context: Context): RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
@@ -17,12 +19,14 @@ class RecetaAdapter(var recetas: List<Hit>, var context: Context): RecyclerView.
         lateinit var txtNombre: TextView
         lateinit var txtOrigen: TextView
         lateinit var txtCalorias: TextView
+        lateinit var iv_imagen: ImageView
 
 
         init {
             txtNombre = view.findViewById(R.id.tv_nombre)
             //txtOrigen = view.findViewById(R.id.tv_origen)
             txtCalorias = view.findViewById(R.id.tv_calorias)
+            iv_imagen = view.findViewById(R.id.iv_imagen)
         }
     }
 
@@ -38,6 +42,7 @@ class RecetaAdapter(var recetas: List<Hit>, var context: Context): RecyclerView.
         holder.txtNombre.text = item.recipe.label
        // holder.txtOrigen.text = item.recipe.toString()
         holder.txtCalorias.text = item.recipe.calories.toString()
+        Picasso.get().load(item.recipe.image).into(holder.iv_imagen)
 
 
         holder.itemView.setOnClickListener {
@@ -50,6 +55,7 @@ class RecetaAdapter(var recetas: List<Hit>, var context: Context): RecyclerView.
             intent.putExtra("porciones", item.recipe.yield)
             intent.putExtra("calorias totales", item.recipe.calories)
             intent.putStringArrayListExtra("cuisineType", ArrayList(item.recipe.cuisineType))
+
             //agrego receta??
             //que es cuisineType??
             //intent.putExtra("origen", item.recipe.label)

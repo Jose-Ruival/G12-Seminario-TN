@@ -152,7 +152,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:background="@color/medio_clarito">
 
         <TextView
             android:id="@+id/tv_source"
@@ -164,14 +165,14 @@
             android:gravity="center"
             android:text="Fuente"
             android:textColor="@color/black"
-            android:textSize="13sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_source_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:gravity="center"
             android:layout_margin="5sp"
             android:textColor="@color/black"
@@ -183,7 +184,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Accede a las instrucciones desde aqui"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:gravity="center"
         android:layout_margin="5sp"
         android:textColor="@color/black"
@@ -197,7 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:gravity="center"
             android:layout_margin="5sp"
             android:textColor="@color/black"

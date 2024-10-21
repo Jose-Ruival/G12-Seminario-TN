@@ -38,15 +38,15 @@
         </LinearLayout>
 
         <!-- Trabajo con la imagen -->
-        <TextView
+        <ImageView
             android:id="@+id/tv_imagen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:textColor="@color/black"
-            android:gravity="center" />
+            android:scaleType="centerCrop">
+          <!--  android:src="" aca va la url de la imagen -->
+         </ImageView>
+
 
     </LinearLayout>
 

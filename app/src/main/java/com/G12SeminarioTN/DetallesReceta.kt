@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.os.Handler
 import android.os.Looper
+import com.G12SeminarioTN.API.Ingredient
 
 
 class DetallesReceta : AppCompatActivity() {
@@ -42,7 +43,8 @@ class DetallesReceta : AppCompatActivity() {
         val intent = intent
         tv_nombre_detalle.text = intent.getStringExtra("nombre").toString()
         tv_origen_detalle.text = intent.getStringExtra("origen").toString()
-        tv_ingredientes_detalle.text = intent.getStringExtra("ingredientes").toString()
+        tv_ingredientes_detalle.text = (intent.getSerializableExtra("ingredientes") as? ArrayList<Ingredient>).toString()
+       // tv_ingredientes_detalle.text = intent.getStringExtra("ingredientes").toString()
     }
 
 

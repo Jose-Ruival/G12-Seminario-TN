@@ -3,20 +3,20 @@ package com.G12SeminarioTN.API
 import com.squareup.moshi.Json
 
 data class Receta(
-    @Json(name = "name")
-    val name: String,
+    @Json(name = "label")
+    val label: String,
     @Json (name = "ingredients")
-    val ingredients: List<String>,
-    @Json (name = "instructions")
-    val instructions: List<String>,
-    @Json (name = "prepTimeMinutes")
-    val prepTimeMinutes: Int,
-    @Json (name = "cookTimeMinutes")
-    val cookTimeMinutes: Int,
-    @Json(name = "cuisine")
-    val cuisine: String,
-    @Json (name = "caloriesPerServing")
-    val caloriesPerServing: Int,
+    val ingredients: List<Ingredient>,
+    @Json (name = "source")
+    val source: String,
+    @Json (name = "url")
+    val url: String,
+    @Json (name = "yield")
+    val yield: Int,
+    @Json (name = "calories")
+    val calories: Float,
+    @Json (name = "cuisineType")
+    val cuisineType: List<String>,
     @Json (name = "image")
     val image: String
     )

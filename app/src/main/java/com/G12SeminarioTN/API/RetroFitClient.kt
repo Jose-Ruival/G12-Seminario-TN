@@ -7,7 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetroFitClient {
 
-    private val BASE_URL = "https://dummyjson.com"
+    private val BASE_URL = "https://api.edamam.com"
 
     // Crear la instancia de Moshi
     private val moshi = Moshi.Builder()

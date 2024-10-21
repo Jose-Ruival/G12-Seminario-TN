@@ -7,6 +7,10 @@ import retrofit2.http.Query
 
 interface PostEndpoints {
 
-    @GET("/recipes")
-    fun searchRecipes(): Call<Recetas>
+    @GET("/search")
+    fun searchRecipes(
+        @Query ("app_id") app_id:String,
+        @Query ("app_key") app_key:String,
+        @Query ("q") q:String
+    ): Call<Recetas>
 }

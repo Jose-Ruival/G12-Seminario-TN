@@ -1,6 +1,7 @@
 package com.G12SeminarioTN.API
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Ingredient(
     @Json(name = "quantity")
@@ -11,4 +12,4 @@ data class Ingredient(
     val weight : Float,
     @Json(name = "food")
     val food : String
-)
+): Serializable

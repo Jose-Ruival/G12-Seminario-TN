@@ -12,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.os.Handler
 import android.os.Looper
+import android.text.util.Linkify
 import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.G12SeminarioTN.API.Ingredient
 import com.G12SeminarioTN.API.Recetas
 import com.G12SeminarioTN.API.RetroFitClient.apiService
@@ -34,7 +36,8 @@ class DetallesReceta : AppCompatActivity() {
     lateinit var tv_calorias_totales_detalle: TextView
     lateinit var tv_url_detalle: TextView
     lateinit var tv_source_detalle: TextView
-    lateinit var iv_imagen: ImageView
+    lateinit var rv_ingredientes: RecyclerView
+    private lateinit var ingredienteAdapter: IngredienteAdapter
 
     private var mediaPlayer: MediaPlayer? = null
     private var isDownloading = false // Estado de descarga
@@ -55,21 +58,20 @@ class DetallesReceta : AppCompatActivity() {
 
         tv_nombre_detalle = findViewById(R.id.tv_nombre_detalle)
         tv_origen_detalle = findViewById(R.id.tv_origen_detalle)
-        tv_ingredientes_detalle = findViewById(R.id.tv_ingredientes_detalle)
+        rv_ingredientes = findViewById(R.id.rv_ingredientes)
+        tv_url_detalle = findViewById(R.id.tv_url_detalle)
         tv_porciones_detalle = findViewById(R.id.tv_prociones_detalle)
         tv_calorias_totales_detalle = findViewById(R.id.tv_calorias_totales_detalle)
         tv_source_detalle = findViewById(R.id.tv_source_detalle)
+        ingredienteAdapter = IngredienteAdapter(emptyList(), this)
+        rv_ingredientes.adapter = ingredienteAdapter
 
 
         val intent = intent
         tv_nombre_detalle.text = intent.getStringExtra("nombre").toString()
-       // tv_origen_detalle.text = intent.getStringExtra("origen").toString()
-       // tv_ingredientes_detalle.text = (intent.getSerializableExtra("ingredientes") as? ArrayList<Ingredient>).toString()
-       // tv_ingredientes_detalle.text = intent.getStringExtra("ingredientes").toString()
-
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val call = apiService.searchRecipes(appId, appKey, intent.getStringExtra("nombre").toString(), 0, 1)
+            val call = apiService.searchRecipes(appId, appKey, intent.getStringExtra("nombre").toString(), 0, 1, null, null )
             call.enqueue(object : Callback<Recetas> {
                 override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -78,16 +80,15 @@ class DetallesReceta : AppCompatActivity() {
                         if (recetas != null) {
 
                             tv_origen_detalle.text = recetas.hits.get(0).recipe.cuisineType.toString()
-                            tv_url_detalle.text = recetas.hits.get(0).recipe.url
-                            tv_ingredientes_detalle.text = recetas.hits.get(0).recipe.ingredients.toString()
+                            ingredienteAdapter = IngredienteAdapter(recetas.hits.get(0).recipe.ingredients, this@DetallesReceta)
+                            rv_ingredientes.adapter = ingredienteAdapter
                             tv_porciones_detalle.text = recetas.hits.get(0).recipe.yield.toString()
                             tv_calorias_totales_detalle.text = recetas.hits.get(0).recipe.calories.toString()
                             tv_source_detalle.text = recetas.hits.get(0).recipe.source
-
+                            tv_url_detalle.text = recetas.hits.get(0).recipe.url
+                            Linkify.addLinks(tv_url_detalle, Linkify.WEB_URLS)
 
                         }
-
-
 
                     } else Log.e("NO FUNCIONA", "ASDASDASDAS")
                 }
@@ -207,6 +208,7 @@ class DetallesReceta : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.descarga, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

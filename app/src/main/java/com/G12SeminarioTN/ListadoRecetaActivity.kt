@@ -9,6 +9,10 @@ import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -28,7 +32,11 @@ import retrofit2.Response
 
 class ListadoRecetaActivity : AppCompatActivity() {
 
-
+    private lateinit var bt_lista: Button
+    private lateinit var et_lista: EditText
+    private lateinit var rg_tipo: RadioGroup
+    private lateinit var rg_origen1: RadioGroup
+    private lateinit var rg_origen2: RadioGroup
     private lateinit var rvReceta: RecyclerView
     private lateinit var recetaAdapter: RecetaAdapter
     private lateinit var toolbar: Toolbar
@@ -45,15 +53,62 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
         val apiService = RetroFitClient.apiService
 
-
+        rg_tipo = findViewById(R.id.rg_tipo)
+        rg_origen1 = findViewById(R.id.rg_origen1)
+        rg_origen2 = findViewById(R.id.rg_origen2)
+        bt_lista = findViewById(R.id.bt_lista)
+        et_lista = findViewById(R.id.et_lista)
         rvReceta = findViewById(R.id.rv_recetas)
         recetaAdapter = RecetaAdapter(emptyList(), this@ListadoRecetaActivity)
         rvReceta.adapter = recetaAdapter
 
+        rg_origen1.setOnCheckedChangeListener { group, checkedId ->
+            var id: Int = rg_origen2.checkedRadioButtonId
+            if (id!=-1){
+                rg_origen2.clearCheck()
+            }
+        }
 
-        buscarRecetas(appId,appKey,"pie",0,20)
+        rg_origen2.setOnCheckedChangeListener { group, checkedId ->
+            var id: Int = rg_origen1.checkedRadioButtonId
+            if (id!=-1){
+                rg_origen1.clearCheck()
+            }
+        }
 
+        bt_lista.setOnClickListener(){
+            var idOrigen: Int = -1
+            var textoOrigen: String
+            var idTipo: Int = -1
+            var textoTipo: String
 
+            if(rg_origen1.checkedRadioButtonId != -1){
+                idOrigen = rg_origen1.checkedRadioButtonId
+            }
+
+            if(rg_origen2.checkedRadioButtonId != -1){
+                idOrigen = rg_origen2.checkedRadioButtonId
+            }
+
+            if(idOrigen != -1) {
+                val rbOrigen = findViewById<RadioButton>(idOrigen)
+                textoOrigen = rbOrigen.text.toString()
+                Log.d("ASDADSDAD", textoOrigen)
+            } else textoOrigen = ""
+
+            if(rg_tipo.checkedRadioButtonId != -1){
+                idTipo = rg_tipo.checkedRadioButtonId
+            }
+
+            if(idTipo != -1) {
+                val rbTipo = findViewById<RadioButton>(idTipo)
+                textoTipo = rbTipo.text.toString()
+                Log.d("ASDADSDAD", textoTipo)
+            } else textoTipo = ""
+
+            val busqueda = et_lista.text.toString()
+            buscarRecetas(appId,appKey,busqueda,0,20,textoTipo,textoOrigen)
+        }
 
         // Configuración de la interfaz
         toolbar = findViewById(R.id.toolbar)
@@ -63,9 +118,16 @@ class ListadoRecetaActivity : AppCompatActivity() {
 
     }
 
-    private fun buscarRecetas(appId: String, appKey: String, query: String, from: Int, to: Int) {
+    private fun buscarRecetas(appId: String, appKey: String, query: String, from: Int, to: Int, mealType: String, cuisineType: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val call = apiService.searchRecipes(appId, appKey, query, from, to)
+            val call: Call<Recetas>
+            if (mealType != "" && cuisineType != ""){
+                call = apiService.searchRecipes(appId, appKey, query, from, to, mealType, cuisineType)
+            } else if(mealType == "" && cuisineType != ""){
+                call = apiService.searchRecipes(appId, appKey, query, from, to, null, cuisineType)
+            } else if(mealType != "" && cuisineType == ""){
+                call = apiService.searchRecipes(appId, appKey, query, from, to, mealType, null)
+            } else call = apiService.searchRecipes(appId, appKey, query, from, to, null, null)
             call.enqueue(object : Callback<Recetas> {
                 override fun onResponse(call: Call<Recetas>, response: Response<Recetas>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -84,108 +146,6 @@ class ListadoRecetaActivity : AppCompatActivity() {
         }
     }
 
-    private fun reproducirMusica() {
-        // Crear un hilo para reproducir música
-        Thread {
-            if (mediaPlayer == null) {
-                mediaPlayer = MediaPlayer.create(this, R.raw.mi_musica)
-                mediaPlayer?.isLooping = true // Asegura que la música se repite
-                mediaPlayer?.start() // Inicia la música
-            } else if (!mediaPlayer!!.isPlaying) {
-                runOnUiThread {
-                    mediaPlayer?.start() // Inicia la música solo si no está reproduciéndose
-                }
-            }
-        }.start()
-    }
-
-
-
-
-    private fun detenerMusica() {
-        mediaPlayer?.let {
-            if (it.isPlaying) {
-                it.stop()
-            }
-            it.release()
-            mediaPlayer = null // Libera el MediaPlayer
-        }
-    }
-
-
-    private fun iniciarSimulacionDescarga() {
-        // Si ya está en proceso de descarga, mostrar mensaje
-        if (isDownloading) {
-            Toast.makeText(this, "Descarga en curso. Espera a que termine.", Toast.LENGTH_SHORT)
-                .show()
-            return
-        }
-        // Si ya se ha completado una descarga, mostrar diálogo para confirmar si se quiere volver a descargar
-        if (descargaCompletada) {
-            mostrarDialogoConfirmacionDescarga()
-            return
-        }
-        // Si no hay descarga en curso ni se ha completado una descarga, comenzar una nueva descarga
-        ejecutarDescarga()
-    }
-
-
-    private fun mostrarDialogoConfirmacionDescarga() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Descarga completada")
-        builder.setMessage("Ya se descargó esta receta. ¿Quieres volver a descargarla?")
-        builder.setPositiveButton("Sí") { dialog, _ ->
-            ejecutarDescarga() // Ejecutar la descarga si el usuario confirma
-            dialog.dismiss()
-        }
-        builder.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-        builder.create().show()
-    }
-
-
-    private fun ejecutarDescarga() {
-        isDownloading = true // Marca que la descarga ha comenzado
-        descargaCompletada = false // Reinicia el estado de finalización de la descarga
-        disableDownloadButton(true) // Deshabilita el botón de descarga
-
-
-        reproducirMusica() // Inicia la música al comenzar la descarga
-
-
-        // Crear un hilo para simular la descarga
-        Thread {
-            for (i in 1..5) { // 5 iteraciones para simular 5 segundos
-                Thread.sleep(1000) // Simula un segundo de descarga
-                runOnUiThread {
-                    Toast.makeText(this, "Descargando... $i", Toast.LENGTH_SHORT).show()
-                }
-            }
-            // Una vez finalizada la simulación de descarga
-            runOnUiThread {
-                isDownloading = false // Marca que la descarga ha terminado
-                descargaCompletada = true // Marca que se completó la descarga
-                Toast.makeText(this, "Descarga finalizada.", Toast.LENGTH_SHORT).show()
-                disableDownloadButton(false) // Habilita el botón de descarga
-            }
-            // Detener la música 1 segundo después de la simulación
-            Handler(Looper.getMainLooper()).postDelayed({
-                detenerMusica() // Detener la música después de la simulación
-            }, 5500) // Detener la música después de 6 segundos
-        }.start()
-    }
-
-
-    private fun disableDownloadButton(disable: Boolean) {
-        // Aquí deshabilitamos o habilitamos el botón de descarga
-        val menuItem = toolbar.menu.findItem(R.id.btnDescargar)
-        menuItem.isEnabled = !disable // Si disable es true, el botón se deshabilita
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        detenerMusica() // Asegúrate de liberar el recurso al destruir la actividad
-    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -204,10 +164,6 @@ class ListadoRecetaActivity : AppCompatActivity() {
             R.id.btnListado -> {
                 val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
-                true
-            }
-            R.id.btnDescargar -> {
-                iniciarSimulacionDescarga() // Llama a la función para simular descarga
                 true
             }
             else -> super.onOptionsItemSelected(item)
